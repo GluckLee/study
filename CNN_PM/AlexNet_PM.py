@@ -1,3 +1,5 @@
+import time
+
 from paddle.nn import Conv2D, MaxPool2D, Linear, Dropout
 from prepro_reader import *
 
@@ -28,6 +30,7 @@ class AlexNet(paddle.nn.Layer):
         self.fc3 = Linear(in_features=4096, out_features=num_classes)
 
     def forward(self, x):
+        print(x.shape)
         x = self.conv1(x)
         x = F.relu(x)
         x = self.max_pool1(x)
@@ -60,6 +63,7 @@ class AlexNet(paddle.nn.Layer):
         # 在全连接之后使用dropout抑制过拟合
         x = self.drop2(x)
         x = self.fc3(x)
+        time.sleep(9999)
 
         return x
 

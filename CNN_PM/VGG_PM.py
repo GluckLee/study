@@ -1,3 +1,5 @@
+import time
+
 import paddle.nn
 from paddle.nn import Conv2D, MaxPool2D, BatchNorm2D, Linear
 from prepro_reader import *
@@ -37,6 +39,7 @@ class VGG(paddle.nn.Layer):
         self.pool = MaxPool2D(stride=2, kernel_size=2)
 
     def forward(self, x):
+        print(x.shape)
         x = self.relu(self.conv1_1(x))
         print(x.shape)
         x = self.relu(self.conv1_2(x))
@@ -85,6 +88,8 @@ class VGG(paddle.nn.Layer):
         x = self.dropout2(self.relu(self.fc2(x)))
         print(x.shape)
         x = self.fc3(x)
+        print(x.shape)
+        time.sleep(9999)
 
         return x
 
